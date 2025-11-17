@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Add Book - Library Management System{% endblock %}
+
+{% block content %}
+<h1 class="mb-4"><i class="bi bi-plus-circle"></i> Add New Book</h1>
+
+<div class="card">
+    <div class="card-body">
+        <form method="POST">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title *</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="isbn" class="form-label">ISBN</label>
+                <input type="text" class="form-control" id="isbn" name="isbn">
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label for="category_id" class="form-label">Category</label>
+                    <select class="form-select" id="category_id" name="category_id">
+                        <option value="">Select Category</option>
+                        {% for category in categories %}
+                            <option value="{{ category.id }}">{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="col-md-4 mb-3">
+                    <label for="author_name" class="form-label">Author</label>
+                    <input type="text" class="form-control" id="author_name" name="author_name" placeholder="Enter author name">
+                </div>
+                
+                <div class="col-md-4 mb-3">
+                    <label for="publisher_name" class="form-label">Publisher</label>
+                    <input type="text" class="form-control" id="publisher_name" name="publisher_name" placeholder="Enter publisher name">
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="quantity" class="form-label">Quantity</label>
+                <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1">
+            </div>
+            
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Save Book</button>
+                <a href="{{ url_for('books') }}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

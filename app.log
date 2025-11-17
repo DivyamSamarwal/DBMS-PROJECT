@@ -1,0 +1,21 @@
+2025-11-17 21:43:24,591 INFO werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.105:5000
+2025-11-17 21:43:24,592 INFO werkzeug: [33mPress CTRL+C to quit[0m
+2025-11-17 21:43:29,640 INFO werkzeug: 127.0.0.1 - - [17/Nov/2025 21:43:29] "GET / HTTP/1.1" 200 -
+2025-11-17 21:43:29,813 INFO werkzeug: 127.0.0.1 - - [17/Nov/2025 21:43:29] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-11-17 21:43:32,345 INFO werkzeug: 127.0.0.1 - - [17/Nov/2025 21:43:32] "GET / HTTP/1.1" 200 -
+2025-11-17 21:43:32,390 INFO werkzeug: 127.0.0.1 - - [17/Nov/2025 21:43:32] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-11-17 21:43:33,002 INFO werkzeug: 127.0.0.1 - - [17/Nov/2025 21:43:33] "GET /borrowers HTTP/1.1" 200 -
+2025-11-17 21:43:33,051 INFO werkzeug: 127.0.0.1 - - [17/Nov/2025 21:43:33] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-11-17 21:43:33,746 INFO werkzeug: 127.0.0.1 - - [17/Nov/2025 21:43:33] "GET /books HTTP/1.1" 200 -
+2025-11-17 21:43:33,778 INFO werkzeug: 127.0.0.1 - - [17/Nov/2025 21:43:33] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-11-17 21:43:34,564 INFO werkzeug: 127.0.0.1 - - [17/Nov/2025 21:43:34] "GET /borrowers HTTP/1.1" 200 -
+2025-11-17 21:43:34,603 INFO werkzeug: 127.0.0.1 - - [17/Nov/2025 21:43:34] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-11-17 21:43:35,249 INFO werkzeug: 127.0.0.1 - - [17/Nov/2025 21:43:35] "GET /loans HTTP/1.1" 200 -
+2025-11-17 21:43:35,286 INFO werkzeug: 127.0.0.1 - - [17/Nov/2025 21:43:35] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-11-17 21:43:36,873 INFO werkzeug: 127.0.0.1 - - [17/Nov/2025 21:43:36] "GET / HTTP/1.1" 200 -
+2025-11-17 21:43:36,904 INFO werkzeug: 127.0.0.1 - - [17/Nov/2025 21:43:36] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-11-17 21:43:37,604 INFO werkzeug: 127.0.0.1 - - [17/Nov/2025 21:43:37] "GET / HTTP/1.1" 200 -
+2025-11-17 21:43:37,647 INFO werkzeug: 127.0.0.1 - - [17/Nov/2025 21:43:37] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -

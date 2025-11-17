@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Publishers - Library Management System{% endblock %}
+
+{% block content %}
+<h1 class="mb-4"><i class="bi bi-building"></i> Publishers</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">Add New Publisher</div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('add_publisher_route') }}">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Publisher Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100"><i class="bi bi-plus"></i> Add Publisher</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">All Publishers</div>
+            <div class="card-body">
+                {% if publishers %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Books Count</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for publisher in publishers %}
+                                <tr>
+                                    <td>{{ publisher.name }}</td>
+                                    <td><span class="badge bg-secondary">{{ publisher.books|length }}</span></td>
+                                    <td>
+                                        <a href="{{ url_for('edit_publisher', id=publisher.id) }}" class="btn btn-sm btn-warning">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <a href="{{ url_for('delete_publisher', id=publisher.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <p class="text-muted">No publishers found.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

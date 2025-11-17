@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Books - Library Management System{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1><i class="bi bi-book"></i> Books</h1>
+    <a href="{{ url_for('add_book') }}" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Add Book</a>
+</div>
+
+<div class="card mb-3">
+    <div class="card-body">
+        <form method="GET" class="row g-3">
+            <div class="col-md-6">
+                <input type="text" name="search" class="form-control" placeholder="Search by title..." value="{{ request.args.get('search', '') }}">
+            </div>
+            <div class="col-md-4">
+                <select name="category" class="form-select">
+                    <option value="">All Categories</option>
+                    {% for category in categories %}
+                        <option value="{{ category.id }}" {% if request.args.get('category') == category.id|string %}selected{% endif %}>
+                            {{ category.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100"><i class="bi bi-search"></i> Filter</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        {% if books %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>ISBN</th>
+                            <th>Author</th>
+                            <th>Category</th>
+                            <th>Publisher</th>
+                            <th>Quantity</th>
+                            <th>Available</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for book in books %}
+                        <tr>
+                            <td>{{ book.title }}</td>
+                            <td>{{ book.isbn or 'N/A' }}</td>
+                            <td>{{ book.author_name or 'N/A' }}</td>
+                            <td><span class="badge bg-info">{{ book.category_name or 'N/A' }}</span></td>
+                            <td>{{ book.publisher_name or 'N/A' }}</td>
+                            <td>{{ book.quantity }}</td>
+                            <td>
+                                {% if book.available > 0 %}
+                                    <span class="badge bg-success">{{ book.available }}</span>
+                                {% else %}
+                                    <span class="badge bg-danger">0</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{{ url_for('edit_book', id=book.id) }}" class="btn btn-sm btn-warning">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a href="{{ url_for('delete_book', id=book.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="text-muted">No books found. <a href="{{ url_for('add_book') }}">Add your first book</a></p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

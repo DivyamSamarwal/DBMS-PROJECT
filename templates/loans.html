@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Loans - Library Management System{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1><i class="bi bi-arrow-left-right"></i> Book Loans</h1>
+    <a href="{{ url_for('add_loan_route') }}" class="btn btn-primary"><i class="bi bi-plus-circle"></i> New Loan</a>
+</div>
+
+<div class="card mb-3">
+    <div class="card-body">
+        <div class="btn-group" role="group">
+            <a href="{{ url_for('loans') }}" class="btn btn-outline-primary {% if not request.args.get('status') %}active{% endif %}">All</a>
+            <a href="{{ url_for('loans', status='active') }}" class="btn btn-outline-primary {% if request.args.get('status') == 'active' %}active{% endif %}">Active</a>
+            <a href="{{ url_for('loans', status='returned') }}" class="btn btn-outline-primary {% if request.args.get('status') == 'returned' %}active{% endif %}">Returned</a>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        {% if loans %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Book</th>
+                            <th>Borrower</th>
+                            <th>Loan Date</th>
+                            <th>Due Date</th>
+                            <th>Return Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for loan in loans %}
+                        <tr>
+                            <td>{{ loan.book_title }}</td>
+                            <td>{{ loan.borrower_name }}</td>
+                            <td>{{ loan.loan_date[:10] if loan.loan_date else 'N/A' }}</td>
+                            <td>
+                                {{ loan.due_date[:10] if loan.due_date else 'N/A' }}
+                                {% if loan.is_overdue %}
+                                    <span class="badge bg-danger">Overdue</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ loan.return_date[:10] if loan.return_date else '-' }}</td>
+                            <td>
+                                <span class="badge bg-{% if loan.status == 'active' %}warning{% else %}success{% endif %}">
+                                    {{ loan.status.title() }}
+                                </span>
+                            </td>
+                            <td>
+                                {% if loan.status == 'active' %}
+                                    <a href="{{ url_for('return_loan_route', id=loan.id) }}" class="btn btn-sm btn-success">
+                                        <i class="bi bi-check-circle"></i> Return
+                                    </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="text-muted">No loans found. <a href="{{ url_for('add_loan_route') }}">Create your first loan</a></p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Authors - Library Management System{% endblock %}
+
+{% block content %}
+<h1 class="mb-4"><i class="bi bi-person"></i> Authors</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">Add New Author</div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('add_author_route') }}">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Author Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100"><i class="bi bi-plus"></i> Add Author</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">All Authors</div>
+            <div class="card-body">
+                {% if authors %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Books Count</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for author in authors %}
+                                <tr>
+                                    <td>{{ author.name }}</td>
+                                    <td><span class="badge bg-secondary">{{ author.books|length }}</span></td>
+                                    <td>
+                                        <a href="{{ url_for('edit_author', id=author.id) }}" class="btn btn-sm btn-warning">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <a href="{{ url_for('delete_author', id=author.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <p class="text-muted">No authors found.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
