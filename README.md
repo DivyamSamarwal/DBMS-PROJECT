@@ -1,5 +1,4 @@
-# LibraryIcons2 — Library Management Demo
-
+# LibraryIcons — Library Management 
 Small Flask-based library management application. This repository includes a simple SQLite backend and
 HTML templates for managing books, borrowers and loans.
 
@@ -129,5 +128,6 @@ taskkill /PID <pid> /F
 ```powershell
 Get-Content .\app.log -Wait -Tail 200
 ```
+
 
 
