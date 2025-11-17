@@ -130,17 +130,4 @@ taskkill /PID <pid> /F
 Get-Content .\app.log -Wait -Tail 200
 ```
 
-**Testing / Next Steps**
-- There are no automated tests included. Consider adding a small pytest suite exercising add/edit/delete flows.
-- For production, run behind a WSGI server (Gunicorn/Waitress) and migrate to a server-grade RDBMS.
 
-**Contributing**
-- Create a branch, make changes, and open a PR. Keep database migrations in mind if you change schema.
-
-**License**
-- No license file included; add one if you plan to publish.
-
-If you want, I can also:
-- Add a minimal `README` badge and instructions for running in a venv.
-- Add a quick integration script that exercises CRUD flows automatically.
-- Commit these changes to a git branch and prepare a short changelog.
